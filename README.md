@@ -1,14 +1,14 @@
 ---
-title: "Geting and Cleaning Data Project"
+title: "Descriptions of run_analysis.R"
 author: "Sau-Chin Chen"
 date: "Sunday, January 18, 2015"
 output: html_document
 ---
     
-## Code Book: structure of variables
+## Code Book: Structure of tidy data
 This project processed the raw data stored in Traing set `x_train.txt` and Test set `x_test.txt`. The lables of subject ID and activity are stored in `y_train.txt`, `subject_train.txt`,`y_test.txt`, and `subject_test.txt`. These files will be complied in to a raw data set. This data set has 563 columns that incude subject ID, activity, and 561 measured features. The variable names of features are stored in `features.txt`.    
     
-In the end of this process, the tidy data has the averaged values of 79 features across activity and subject. The ID and Activity are transformed for the demands of this process. Here are the variable names of the tidy data and the corresponding descriptions.    
+In the end of this process, the tidy data has the averaged values across activity and subject of 79 features. The ID and Activity are transformed for the demands of this process. Here are the variable names of the tidy data and the corresponding descriptions.    
 
 **ID**   
  Initial 1 refers to the subjects in train set.   
@@ -25,7 +25,7 @@ In the end of this process, the tidy data has the averaged values of 79 features
 **List of 79 Feature Names**    
 tBodyAcc-mean()-X,tBodyAcc-mean()-Y,tBodyAcc-mean()-Z,tGravityAcc-mean()-X,tGravityAcc-mean()-Y,tGravityAcc-mean()-Z,tBodyAccJerk-mean()-X,tBodyAccJerk-mean()-Y,tBodyAccJerk-mean()-Z,tBodyGyro-mean()-X,tBodyGyro-mean()-Y,tBodyGyro-mean()-Z,tBodyGyroJerk-mean()-X,tBodyGyroJerk-mean()-Y,tBodyGyroJerk-mean()-Z,tBodyAccMag-mean(),tGravityAccMag-mean(),tBodyAccJerkMag-mean(),tBodyGyroMag-mean(),tBodyGyroJerkMag-mean(),fBodyAcc-mean()-X,fBodyAcc-mean()-Y,fBodyAcc-mean()-Z,fBodyAcc-meanFreq()-X,fBodyAcc-meanFreq()-Y,fBodyAcc-meanFreq()-Z,fBodyAccJerk-mean()-X,fBodyAccJerk-mean()-Y,fBodyAccJerk-mean()-Z,fBodyAccJerk-meanFreq()-X,fBodyAccJerk-meanFreq()-Y,fBodyAccJerk-meanFreq()-Z,fBodyGyro-mean()-X,fBodyGyro-mean()-Y,fBodyGyro-mean()-Z,fBodyGyro-meanFreq()-X,fBodyGyro-meanFreq()-Y,fBodyGyro-meanFreq()-Z,fBodyAccMag-mean(),fBodyAccMag-meanFreq(),fBodyBodyAccJerkMag-mean(),fBodyBodyAccJerkMag-meanFreq(),fBodyBodyGyroMag-mean(),fBodyBodyGyroMag-meanFreq(),fBodyBodyGyroJerkMag-mean(),fBodyBodyGyroJerkMag-meanFreq(),tBodyAcc-std()-X,tBodyAcc-std()-Y,tBodyAcc-std()-Z,tGravityAcc-std()-X,tGravityAcc-std()-Y,tGravityAcc-std()-Z,tBodyAccJerk-std()-X,tBodyAccJerk-std()-Y,tBodyAccJerk-std()-Z,tBodyGyro-std()-X,tBodyGyro-std()-Y,tBodyGyro-std()-Z,tBodyGyroJerk-std()-X,tBodyGyroJerk-std()-Y,tBodyGyroJerk-std()-Z,tBodyAccMag-std(),tGravityAccMag-std(),tBodyAccJerkMag-std(),tBodyGyroMag-std(),tBodyGyroJerkMag-std(),fBodyAcc-std()-X,fBodyAcc-std()-Y,fBodyAcc-std()-Z,fBodyAccJerk-std()-X,fBodyAccJerk-std()-Y,fBodyAccJerk-std()-Z,fBodyGyro-std()-X,fBodyGyro-std()-Y,fBodyGyro-std()-Z,fBodyAccMag-std(),fBodyBodyAccJerkMag-std(),fBodyBodyGyroMag-std(),fBodyBodyGyroJerkMag-std()   
 
-## Study Design and description of the script
+## Study Design: major steps in the script
 **Step 1.** Load the Train set and Test set to a data table `RAW_DT`.Subject ID had been transformed to the described style in the code book.    
 ```
 require(data.table)

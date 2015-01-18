@@ -23,7 +23,7 @@ Test_Features <- read.table(File_ls[17])
 Test_DT <- data.table(Test_ID, Test_ACT, Test_Features)
 
 RAW_DT <- rbind(Train_DT, Test_DT)
-rm(Train_ID,Train_ACT,Train_Features,Train_DT,Test_ID,Test_DT,Test_ACT,Test_Features,Test_DT)
+rm(Train_ID,Train_ACT,Train_Features,Train_DT,Test_ID,Test_DT,Test_ACT,Test_Features)
 
 ## 2.Extract the features of mean() and std()
 # define the target patterns in the variable names
