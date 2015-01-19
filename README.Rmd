@@ -1,6 +1,11 @@
-# Descriptions of run_analysis.R
-Sau-Chin Chen  
-Sunday, January 18, 2015  
+---
+title: "Descriptions of run_analysis.R"
+author: "Sau-Chin Chen"
+date: "Sunday, January 18, 2015"
+output: 
+  html_document:
+    keep_md: true
+---
     
 ## Code Book: Structure of tidy data
 This project processed the raw data stored in Traing set `x_train.txt` and Test set `x_test.txt`. The lables of subject ID and activity are stored in `y_train.txt`, `subject_train.txt`,`y_test.txt`, and `subject_test.txt`. These files will be complied in to a raw data set. This data set has 563 columns that incude subject ID, activity, and 561 measured features. The variable names of features are stored in `features.txt`.    
