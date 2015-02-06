@@ -1,5 +1,5 @@
 ### Data Source
-This project processed the feature vectors stored in Traing set *x_train.txt* and in Test set *x_test.txt*. Subject IDs of Train set and Test set are stroed in *subject_train.txt* and *subject_test.txt*. Activity type of each record are stored in *y_train.txt* and *y_test.txt*. At first these files are merged into the raw data set `RAW_DT` incuding the columns of subject ID, activity type, and 561 feature vectors. The variable names of features are stored in `features.txt`.   
+This project processed the subjects' activity records stored in Traing set *x_train.txt* and in Test set *x_test.txt*. Subject IDs of Train set and Test set are stroed in *subject_train.txt* and *subject_test.txt*. Activity type of each record are stored in *y_train.txt* and *y_test.txt*. At first these files are merged into the raw data set `RAW_DT` incuding the columns of subject ID, activity type, and 561 feature vectors. The variable names of features are stored in `features.txt`.   
 
 ### Study Design: major steps in *run_analysis.R*
 **Step 1.** Create Train set `Train_DT` and Test set `Test_DT` and merge them into raw data table `RAW_DT`.Subject ID is transformed to the style described in `codebook.md`.
