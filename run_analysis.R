@@ -1,6 +1,6 @@
 # Load the raw data from the zip File
 DATAzip <-dir()[grep(".zip",dir())]
-#unzip(DATAzip)
+unzip(DATAzip)
 File_ls <- unzip(DATAzip,list=TRUE)$Name
 
 # Get the labels of activity
