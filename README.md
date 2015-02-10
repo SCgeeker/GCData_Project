@@ -37,7 +37,7 @@ RAW_Activity1 = RAW_DT$ACT_CODE
 RAW_Extract[,ACT_CODE:= paste0(substr(RAW_Activity,1,3),RAW_Activity1)]
 ```
 
-**Step 5.** Calcuate average values of targeted features by activity and subject. The output tidy data is stored in the external file `TidyD01.txt`. My script firstly write the vaiable names (see `codebook.md`) then append the data under each column.    
+**Step 5.** Calcuate average values of targeted features by activity and subject. The output tidy data is stored in the external file `TidyDT.txt`. My script firstly write the vaiable names (see `codebook.md`) then append the data under each column.    
 ```
 ColNAMES <- c("ID","Activity",as.character(Extract_Features))   # Listed in codebook.md
 write(ColNAMES,file="TidyD01.txt",ncolumns = length(ColNAMES), sep = ",")
