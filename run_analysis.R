@@ -51,5 +51,5 @@ Tidy_DT <- RAW_Extract[,lapply(.SD,mean),by=paste0(ID,ACT_CODE)]
 
 # 5. Save the Tidy data
 ColNAMES <- c("ID","Activity",as.character(Extract_Features))
-write(ColNAMES,file="TidyD01.txt",ncolumns = length(ColNAMES), sep = ",")
+write(ColNAMES,file="TidyDT.txt",ncolumns = length(ColNAMES), sep = ",")
 write.table(data.table(substr(Tidy_DT[,paste0],1,3),substr(Tidy_DT[,paste0],4,7),Tidy_DT[,!1,with=FALSE]), file = "TidyD01.txt", quote = FALSE, sep = ",",col.names = FALSE,row.names=FALSE, append=TRUE )
