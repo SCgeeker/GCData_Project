@@ -1,17 +1,17 @@
 ### Data Source
-This project processed the subjects' activity records stored in Traing set *x_train.txt* and in Test set *x_test.txt*. Subject IDs of Train set and Test set are stroed in *subject_train.txt* and *subject_test.txt*. Activity type of each record are stored in *y_train.txt* and *y_test.txt*. At first these files are merged into the raw data set `RAW_DT` incuding the columns of subject ID, activity type, and 561 feature vectors. The variable names of features are stored in `features.txt`.   
+The unziped files are stored in the directory *../UCI HAR Dataset/* that is out of the working directory. The data have to be summarized include the subjects' activity records stored in Traing set *x_train.txt* and in Test set *x_test.txt*. Subject IDs of Train set and Test set are stroed in *subject_train.txt* and *subject_test.txt*. Activity type of each record are stored in *y_train.txt* and *y_test.txt*. At first these files are merged into the raw data set `RAW_DT` incuding the columns of subject ID, activity type, and 561 feature vectors. The variable names of features are stored in `features.txt`.   
 
 ### Study Design: major steps in *run_analysis.R*
 **Step 1.** Create Train set `Train_DT` and Test set `Test_DT` and merge them into raw data table `RAW_DT`.Subject ID is transformed to the style described in `codebook.md`.
 ```
-Train_ID <- 100 + read.table(File_ls[30], col.names = "ID")  #subject_train.txt
-Train_ACT <- read.table(File_ls[32], col.names = "ACT_CODE") #y_train.txt
-Train_Features <- read.table(File_ls[31])                    #x_train.txt
+Train_ID <- 100 + read.table(File_ls[24], col.names = "ID")  #subject_train.txt
+Train_ACT <- read.table(File_ls[26], col.names = "ACT_CODE") #y_train.txt
+Train_Features <- read.table(File_ls[25])                    #x_train.txt
 Train_DT <- data.table(Train_ID, Train_ACT, Train_Features)
 
-Test_ID <- 200 + read.table(File_ls[16], col.names = "ID")   #subject_test.txt
-Test_ACT <- read.table(File_ls[18], col.names = "ACT_CODE")  #y_test.txt
-Test_Features <- read.table(File_ls[17])                     #x_test.txt
+Test_ID <- 200 + read.table(File_ls[11], col.names = "ID")   #subject_test.txt
+Test_ACT <- read.table(File_ls[13], col.names = "ACT_CODE")  #y_test.txt
+Test_Features <- read.table(File_ls[12])                     #x_test.txt
 Test_DT <- data.table(Test_ID, Test_ACT, Test_Features)
 
 RAW_DT <- rbind(Train_DT, Test_DT)

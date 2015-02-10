@@ -1,25 +1,23 @@
 # Load the raw data from the zip File
-DATAzip <-dir()[grep(".zip",dir())]
-unzip(DATAzip)
-File_ls <- unzip(DATAzip,list=TRUE)$Name
+File_ls <- dir("../UCI HAR Dataset/", all.files = TRUE, full.names = TRUE, recursive = TRUE, include.dirs = TRUE)
 
 # Get the labels of activity
-ACT_Label <- read.table(File_ls[1])
+ACT_Label <- read.table(File_ls[27])
 # Get the variable names of features
-Features <- read.table(File_ls[2])
+Features <- read.table(File_ls[28])
 
 # 1.Load data.table of Train and Test
 # Subject ID from Train append the initial '1'
 # Subject ID from Test append the initial '2'
 require(data.table)
-Train_ID <- 100 + read.table(File_ls[30], col.names = "ID")
-Train_ACT <- read.table(File_ls[32], col.names = "ACT_CODE")
-Train_Features <- read.table(File_ls[31])
+Train_ID <- 100 + read.table(File_ls[24], col.names = "ID")
+Train_ACT <- read.table(File_ls[26], col.names = "ACT_CODE")
+Train_Features <- read.table(File_ls[25])
 Train_DT <- data.table(Train_ID, Train_ACT, Train_Features)
 
-Test_ID <- 200 + read.table(File_ls[16], col.names = "ID")
-Test_ACT <- read.table(File_ls[18], col.names = "ACT_CODE")
-Test_Features <- read.table(File_ls[17])
+Test_ID <- 200 + read.table(File_ls[11], col.names = "ID")
+Test_ACT <- read.table(File_ls[13], col.names = "ACT_CODE")
+Test_Features <- read.table(File_ls[12])
 Test_DT <- data.table(Test_ID, Test_ACT, Test_Features)
 
 RAW_DT <- rbind(Train_DT, Test_DT)

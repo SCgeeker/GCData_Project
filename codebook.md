@@ -4,9 +4,8 @@ Tidy data set **TidyD01.txt** stores the **averaged values** of 79 targeted feat
 ####ID
   Each ID has 3 numbers.
   
-  Initial 1 refers to the subjects from **train set**.   
-  Initial 2 refers to the subjects from **test set**.   
-  The resting 2 numbers are from raw data set.
+  Initial 1 refers to the subject IDs from *subject_train.txt*.   
+  Initial 2 refers to the subject IDs from *subject_test.txt*.   
     
 ####Activity
  Original labels in *activity_labels.txt* are transformed as following:    
