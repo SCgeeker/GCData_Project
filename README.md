@@ -2,7 +2,17 @@
 
 
 ### Data Source
-The full data set is from [UCI machine learning repository](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). Data set for this project is ziped. I downloaded from [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and extracted to the directory *../UCI HAR Dataset/* that is out of the working directory. 
+The full data set is from [UCI machine learning repository](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The initial codes as following donwnload the [raw data set](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and extracted the files to the directory *../UCI HAR Dataset/* out of the working directory.  
+```
+ProjectName <- "/GCData_Project"
+fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileUrl, destfile = "../Dataset.zip")
+if(!file.exists("../UCI HAR Dataset")) {
+  unzip("../Dataset.zip", exdir = gsub(ProjectName,"",getwd()))  
+}
+File_ls <- dir("../UCI HAR Dataset/", all.files = TRUE, full.names = TRUE, recursive = TRUE, include.dirs = TRUE)
+
+```
 
 
 ### Structure of raw data
@@ -11,12 +21,12 @@ Processed data include the subjects' activity records stored in Traing set *x_tr
 ### Study Design: Critial steps in *run_analysis.R*
 **Step 1.** Create Train set `Train_DT` and Test set `Test_DT` and merge them into raw data table `RAW_DT`.Subject ID is transformed to the style described in `codebook.md`.
 ```
-Train_ID <- 100 + read.table(File_ls[24], col.names = "ID")  #subject_train.txt
+Train_ID <- read.table(File_ls[24], col.names = "ID")  #subject_train.txt
 Train_ACT <- read.table(File_ls[26], col.names = "ACT_CODE") #y_train.txt
 Train_Features <- read.table(File_ls[25])                    #x_train.txt
 Train_DT <- data.table(Train_ID, Train_ACT, Train_Features)
 
-Test_ID <- 200 + read.table(File_ls[11], col.names = "ID")   #subject_test.txt
+Test_ID <- read.table(File_ls[11], col.names = "ID")   #subject_test.txt
 Test_ACT <- read.table(File_ls[13], col.names = "ACT_CODE")  #y_test.txt
 Test_Features <- read.table(File_ls[12])                     #x_test.txt
 Test_DT <- data.table(Test_ID, Test_ACT, Test_Features)
@@ -46,7 +56,9 @@ RAW_Extract[,ACT_CODE:= paste0(substr(RAW_Activity,1,3),RAW_Activity1)]
 
 **Step 5.** Calcuate average values of targeted features by activity and subject. The output tidy data is stored in the external file `TidyDT.txt`. My script firstly write the vaiable names (see `codebook.md`) then append the data under each column.    
 ```
-ColNAMES <- c("ID","Activity",as.character(Extract_Features))   # Listed in codebook.md
-write(ColNAMES,file="TidyD01.txt",ncolumns = length(ColNAMES), sep = ",")
-write.table(data.table(substr(Tidy_DT[,paste0],1,3),substr(Tidy_DT[,paste0],4,7),Tidy_DT[,!1,with=FALSE]), file = "TidyD01.txt", quote = FALSE, sep = ",",col.names = FALSE,row.names=FALSE, append=TRUE )
+Tidy_DT <- RAW_Extract[,lapply(.SD,mean),by=paste0(ACT_CODE,ID)]
+
+ColNAMES <- c("ID","Activity",as.character(Extract_Features))
+write(ColNAMES,file="TidyDT.txt",ncolumns = length(ColNAMES), sep = ",")
+write.table(data.table(substr(Tidy_DT[,paste0],5,6),substr(Tidy_DT[,paste0],1,4),Tidy_DT[,!1,with=FALSE]), file = "TidyDT.txt", quote = FALSE, sep = ",",col.names = FALSE,row.names=FALSE, append=TRUE )
 ```

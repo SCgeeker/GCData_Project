@@ -1,4 +1,10 @@
 # Load the raw data from the zip File
+ProjectName <- "/GCData_Project"
+fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileUrl, destfile = "../Dataset.zip")
+if(!file.exists("../UCI HAR Dataset")) {
+  unzip("../Dataset.zip", exdir = gsub(ProjectName,"",getwd()))  
+}
 File_ls <- dir("../UCI HAR Dataset/", all.files = TRUE, full.names = TRUE, recursive = TRUE, include.dirs = TRUE)
 
 # Get the labels of activity
@@ -10,12 +16,12 @@ Features <- read.table(File_ls[28])
 # Subject ID from Train append the initial '1'
 # Subject ID from Test append the initial '2'
 require(data.table)
-Train_ID <- 100 + read.table(File_ls[24], col.names = "ID")
+Train_ID <- read.table(File_ls[24], col.names = "ID")
 Train_ACT <- read.table(File_ls[26], col.names = "ACT_CODE")
 Train_Features <- read.table(File_ls[25])
 Train_DT <- data.table(Train_ID, Train_ACT, Train_Features)
 
-Test_ID <- 200 + read.table(File_ls[11], col.names = "ID")
+Test_ID <- read.table(File_ls[11], col.names = "ID")
 Test_ACT <- read.table(File_ls[13], col.names = "ACT_CODE")
 Test_Features <- read.table(File_ls[12])
 Test_DT <- data.table(Test_ID, Test_ACT, Test_Features)
@@ -25,8 +31,8 @@ rm(Train_ID,Train_ACT,Train_Features,Train_DT,Test_ID,Test_DT,Test_ACT,Test_Feat
 
 ## 2.Extract the features of mean() and std()
 # define the target patterns in the variable names
-pattern1 <- "mean()"
-pattern2 <- "std()"
+pattern1 <- "mean+"
+pattern2 <- "std+"
 # Store the labels of features
 Extract_Features <- Features$V2[c(grep(pattern1, Features$V2), grep(pattern2, Features$V2))]
 
@@ -47,9 +53,9 @@ RAW_Activity1 = RAW_DT$ACT_CODE
 RAW_Extract[,ACT_CODE:= paste0(substr(RAW_Activity,1,3),RAW_Activity1)]
 
 # Averages of features by activity and subject
-Tidy_DT <- RAW_Extract[,lapply(.SD,mean),by=paste0(ID,ACT_CODE)]
+Tidy_DT <- RAW_Extract[,lapply(.SD,mean),by=paste0(ACT_CODE,ID)]
 
 # 5. Save the Tidy data
 ColNAMES <- c("ID","Activity",as.character(Extract_Features))
 write(ColNAMES,file="TidyDT.txt",ncolumns = length(ColNAMES), sep = ",")
-write.table(data.table(substr(Tidy_DT[,paste0],1,3),substr(Tidy_DT[,paste0],4,7),Tidy_DT[,!1,with=FALSE]), file = "TidyD01.txt", quote = FALSE, sep = ",",col.names = FALSE,row.names=FALSE, append=TRUE )
+write.table(data.table(substr(Tidy_DT[,paste0],5,6),substr(Tidy_DT[,paste0],1,4),Tidy_DT[,!1,with=FALSE]), file = "TidyDT.txt", quote = FALSE, sep = ",",col.names = FALSE,row.names=FALSE, append=TRUE )

@@ -2,11 +2,8 @@
 **TidyD01.txt** stores the **averaged values** of 79 targeted features across activity and subject. First and second column resprsent `ID` and `Activity` of each observation. The resting 79 columns store the averaged values of features. Total 180 oversvations are summarized.
 
 ####ID
-  Each ID has 3 numbers.
+  Each ID has 1 or 2 numbers from raw data.
   
-  Initial 1 refers to the subject IDs from *subject_train.txt*.   
-  Initial 2 refers to the subject IDs from *subject_test.txt*.   
-    
 ####Activity
  Original labels in *activity_labels.txt* are transformed as following:    
  
