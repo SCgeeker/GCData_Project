@@ -1,5 +1,5 @@
 ## Code Book: Structure of tidy data
-**TidyD01.txt** stores the **averaged values** of 79 targeted features across activity and subject. First and second column resprsent `ID` and `Activity` of each observation. The resting 79 columns store the averaged values of features. Total 180 oversvations are summarized.
+**TidyDT.txt** stores the **averaged values** of 79 targeted features across activity and subject. First and second column resprsent `ID` and `Activity` of each observation. The resting 79 columns store the averaged values of features. Total 180 oversvations are summarized.
 
 ####ID
   Each ID has 1 or 2 numbers from raw data.
