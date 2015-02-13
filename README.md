@@ -1,5 +1,8 @@
-### Content
-
+### Project Overview
+*README.md*        this file   
+*TidyDT.txt*       final output   
+*codebook.md*      description of *TidyDT.txt*   
+*run_analysis.R*   codes to complete this project   
 
 ### Data Source
 The full data set is from [UCI machine learning repository](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The initial codes as following donwnload the [raw data set](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and extracted the files to the directory *../UCI HAR Dataset/* out of the working directory.  
