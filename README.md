@@ -1,7 +1,14 @@
-### Data Source
-The unziped files are stored in the directory *../UCI HAR Dataset/* that is out of the working directory. The data have to be summarized include the subjects' activity records stored in Traing set *x_train.txt* and in Test set *x_test.txt*. Subject IDs of Train set and Test set are stroed in *subject_train.txt* and *subject_test.txt*. Activity type of each record are stored in *y_train.txt* and *y_test.txt*. At first these files are merged into the raw data set `RAW_DT` incuding the columns of subject ID, activity type, and 561 feature vectors. The variable names of features are stored in `features.txt`.   
+### Content
 
-### Study Design: major steps in *run_analysis.R*
+
+### Data Source
+The full data set is from [UCI machine learning repository](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). Data set for this project is ziped. I downloaded from [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and extracted to the directory *../UCI HAR Dataset/* that is out of the working directory. 
+
+
+### Structure of raw data
+Processed data include the subjects' activity records stored in Traing set *x_train.txt* and in Test set *x_test.txt*. Subject IDs of Train set and Test set are stroed in *subject_train.txt* and *subject_test.txt*. Activity type of each record are stored in *y_train.txt* and *y_test.txt*. At first these files are merged into the raw data set `RAW_DT` incuding the columns of subject ID, activity type, and 561 feature vectors. The variable names of features are stored in `features.txt`.   
+
+### Study Design: Critial steps in *run_analysis.R*
 **Step 1.** Create Train set `Train_DT` and Test set `Test_DT` and merge them into raw data table `RAW_DT`.Subject ID is transformed to the style described in `codebook.md`.
 ```
 Train_ID <- 100 + read.table(File_ls[24], col.names = "ID")  #subject_train.txt
